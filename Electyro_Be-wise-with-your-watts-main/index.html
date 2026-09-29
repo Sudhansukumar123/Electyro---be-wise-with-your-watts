@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ELECTYRO — Smart Energy Intelligence Platform</title>
+  
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  
+  <!-- FontAwesome & Libraries -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+  
+  <!-- Custom Styles -->
+  <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body class="bg-[#070b16] text-slate-100 antialiased selection:bg-emerald-500 selection:text-black">
+
+  <!-- Toast Container -->
+  <div id="toast-container"></div>
+
+  <!-- ============================================================ -->
+  <!--  LANDING PAGE SECTION                                        -->
+  <!-- ============================================================ -->
+  <div id="landing" class="relative min-h-screen overflow-hidden flex flex-col justify-between">
+    <canvas id="landing-canvas"></canvas>
+
+    <div class="landing-content flex-1 flex flex-col justify-between">
+      <!-- Landing Header -->
+      <header class="max-w-7xl mx-auto w-full px-6 py-6 flex items-center justify-between">
+        <div class="flex items-center gap-3">
+          <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-emerald-500 to-emerald-400 text-slate-950 flex items-center justify-center font-black text-xl shadow-lg shadow-emerald-500/25">
+            <i class="fa-solid fa-bolt"></i>
+          </div>
+          <span class="brand-title text-2xl font-black tracking-tight text-white">ELECTYRO</span>
+        </div>
+
+        <div class="hidden md:flex items-center gap-8 text-sm text-slate-300 font-medium">
+          <a href="#features" class="hover:text-emerald-400 transition">Features</a>
+          <a href="#solutions" class="hover:text-emerald-400 transition">Solutions</a>
+          <a href="#roles" class="hover:text-emerald-400 transition">Portals</a>
+          <a href="#stats" class="hover:text-emerald-400 transition">Impact</a>
+        </div>
+
+        <div class="flex items-center gap-3">
+          <button onclick="showLogin()" class="btn-secondary btn-sm" id="landing-signin-btn">
+            <i class="fa-solid fa-right-to-bracket text-emerald-400"></i> Sign In
+          </button>
+          <button onclick="showLogin()" class="btn-primary btn-sm" id="landing-getstarted-btn">
+            Get Started
+          </button>
+        </div>
+      </header>
+
+      <!-- Hero Section -->
+      <main class="max-w-7xl mx-auto w-full px-6 py-12 lg:py-16 grid lg:grid-cols-12 gap-12 items-center">
+        <div class="lg:col-span-7 space-y-6">
+          <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-emerald-500/30 bg-emerald-500/10 text-emerald-400 text-xs font-semibold">
+            <span class="pulse-dot"></span> Next-Gen Smart Grid Intelligence
+          </div>
+
+          <h1 class="font-display font-extrabold text-4xl sm:text-5xl lg:text-6xl text-white tracking-tight leading-[1.1]">
+            Empowering Smarter <span class="bg-gradient-to-r from-emerald-400 via-teal-300 to-cyan-400 bg-clip-text text-transparent">Energy Ecosystems</span>
+          </h1>
+
+          <p class="text-slate-300 text-base sm:text-lg max-w-2xl leading-relaxed">
+            Real-time appliance monitoring, predictive billing, peak load balance, and Gemini AI energy coaching — unified into a seamless intelligence suite for consumers, utility staff, and admins.
+          </p>
+
+          <div class="pt-2 flex flex-wrap items-center gap-4">
+            <button onclick="showLogin()" class="btn-primary text-base py-3.5 px-7">
+              <i class="fa-solid fa-rocket"></i> Launch Dashboard Demo
+            </button>
+            <a href="#roles" class="btn-secondary text-base py-3.5 px-6">
+              Explore User Roles <i class="fa-solid fa-arrow-down text-xs"></i>
+            </a>
+          </div>
+
+          <!-- Quick Stats Row -->
+          <div class="pt-6 grid grid-cols-3 gap-4 border-t border-slate-800/80">
+            <div>
+              <div class="stat-big text-emerald-400" data-count="2400000">0</div>
+              <div class="text-xs text-slate-400 font-medium">kWh Saved Annually</div>
+            </div>
+            <div>
+              <div class="stat-big text-amber-400" data-count="998">0</div>
+              <div class="text-xs text-slate-400 font-medium">% Meter Accuracy</div>
+            </div>
+            <div>
+              <div class="stat-big text-cyan-400" data-count="14200">0</div>
+              <div class="text-xs text-slate-400 font-medium">Monitored Appliances</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Live Simulation Card Preview -->
+        <div class="lg:col-span-5">
+          <div class="glass-card p-6 border-emerald-500/30 shadow-2xl shadow-emerald-500/10 space-y-5">
+            <div class="flex items-center justify-between pb-3 border-b border-slate-800">
+              <div class="flex items-center gap-3">
+                <div class="w-3 h-3 rounded-full bg-rose-500"></div>
+                <div class="w-3 h-3 rounded-full bg-amber-500"></div>
+                <div class="w-3 h-3 rounded-full bg-emerald-500"></div>
+              </div>
+              <span class="text-xs font-mono text-emerald-400 bg-emerald-500/10 px-2.5 py-1 rounded-md border border-emerald-500/20">LIVE METRICS</span>
+            </div>
+
+            <div class="space-y-4">
+              <div class="flex items-center justify-between p-3.5 rounded-xl bg-slate-900/80 border border-slate-800">
+                <div>
+                  <div class="text-xs text-slate-400">Current Household Load</div>
+                  <div class="text-2xl font-bold font-display text-white mt-0.5">3.88 kW</div>
+                </div>
+                <div class="text-right">
+                  <span class="badge badge-green">OPTIMAL</span>
+                  <div class="text-[10px] text-slate-400 mt-1">₹31.04 / hr rate</div>
+                </div>
+              </div>
+
+              <div class="space-y-2.5">
+                <div class="text-xs font-semibold text-slate-400 uppercase tracking-wider">Top Running Devices</div>
+                <div class="flex items-center justify-between text-xs p-2.5 rounded-lg bg-slate-900/50">
+                  <span class="text-white"><i class="fa-solid fa-snowflake text-cyan-400 mr-2"></i> Air Conditioner (1.5 kW)</span>
+                  <span class="text-emerald-400 font-mono font-semibold">Active</span>
+                </div>
+                <div class="flex items-center justify-between text-xs p-2.5 rounded-lg bg-slate-900/50">
+                  <span class="text-white"><i class="fa-solid fa-hot-tub-person text-amber-400 mr-2"></i> Water Heater (2.0 kW)</span>
+                  <span class="text-slate-500 font-mono">Standby</span>
+                </div>
+                <div class="flex items-center justify-between text-xs p-2.5 rounded-lg bg-slate-900/50">
+                  <span class="text-white"><i class="fa-solid fa-tv text-purple-400 mr-2"></i> Smart TV (0.12 kW)</span>
+                  <span class="text-emerald-400 font-mono font-semibold">Active</span>
+                </div>
+              </div>
+
+              <div class="p-3 rounded-xl bg-emerald-500/10 border border-emerald-500/20 flex items-start gap-3 text-xs text-slate-300">
+                <i class="fa-solid fa-lightbulb text-amber-400 text-sm mt-0.5"></i>
+                <div>
+                  <strong class="text-white">Gemini Recommendation:</strong> Shifting washing machine cycle to after 8 PM will save ~₹240 on peak tariff charges.
+                </div>
+              </div>
+            </div>
+
+            <button onclick="showLogin()" class="btn-primary w-full py-3 text-xs uppercase tracking-wider font-bold">
+              Test Interactive Control
+            </button>
+          </div>
+        </div>
+      </main>
+
+      <!-- Roles Showcase Bar -->
+      <section id="roles" class="max-w-7xl mx-auto w-full px-6 py-10 border-t border-slate-800/60">
+        <div class="text-center mb-8">
+          <h2 class="font-display font-bold text-2xl text-white">Choose Your Portal Experience</h2>
+          <p class="text-xs text-slate-400 mt-1">Multi-role architecture tailored for consumers, staff operators, and system administrators.</p>
+        </div>
+
+        <div class="grid md:grid-cols-3 gap-6">
+          <div onclick="showLogin(); quickSelectRole('user')" class="glass-card p-6 glass-card-interactive cursor-pointer">
+            <div class="w-12 h-12 rounded-2xl bg-emerald-500/20 text-emerald-400 flex items-center justify-center text-xl mb-4">
+              <i class="fa-solid fa-user text-emerald-400"></i>
+            </div>
+            <h3 class="font-display font-bold text-lg text-white mb-2">Consumer Portal</h3>
+            <p class="text-xs text-slate-400 leading-relaxed mb-4">Monitor individual appliance wattage, ask Gemini AI coach for savings, track daily/monthly usage trends, and clear bills instantly via UPI or Card.</p>
+            <span class="text-xs font-semibold text-emerald-400 flex items-center gap-1">Login as Rahul Sharma <i class="fa-solid fa-arrow-right text-[10px]"></i></span>
+          </div>
+
+          <div onclick="showLogin(); quickSelectRole('staff')" class="glass-card p-6 glass-card-interactive cursor-pointer">
+            <div class="w-12 h-12 rounded-2xl bg-cyan-500/20 text-cyan-400 flex items-center justify-center text-xl mb-4">
+              <i class="fa-solid fa-user-gear text-cyan-400"></i>
+            </div>
+            <h3 class="font-display font-bold text-lg text-white mb-2">Utility Staff Portal</h3>
+            <p class="text-xs text-slate-400 leading-relaxed mb-4">Manage assigned consumer rosters, audit grid collection efficiencies, investigate meter discrepancies, and resolve support queue tickets.</p>
+            <span class="text-xs font-semibold text-cyan-400 flex items-center gap-1">Login as Staff Member <i class="fa-solid fa-arrow-right text-[10px]"></i></span>
+          </div>
+
+          <div onclick="showLogin(); quickSelectRole('admin')" class="glass-card p-6 glass-card-interactive cursor-pointer">
+            <div class="w-12 h-12 rounded-2xl bg-amber-500/20 text-amber-400 flex items-center justify-center text-xl mb-4">
+              <i class="fa-solid fa-user-shield text-amber-400"></i>
+            </div>
+            <h3 class="font-display font-bold text-lg text-white mb-2">System Admin Command</h3>
+            <p class="text-xs text-slate-400 leading-relaxed mb-4">Full system governance, annual revenue forecasting, tariff slab configurator, global user status toggling, and multi-tier analytics.</p>
+            <span class="text-xs font-semibold text-amber-400 flex items-center gap-1">Login as Admin <i class="fa-solid fa-arrow-right text-[10px]"></i></span>
+          </div>
+        </div>
+      </section>
+
+      <footer class="max-w-7xl mx-auto w-full px-6 py-6 border-t border-slate-800/80 text-center text-xs text-slate-500">
+        &copy; 2026 ELECTYRO Smart Energy Inc. All rights reserved. Powered by Google AI Studio & Gemini Models.
+      </footer>
+    </div>
+  </div>
+
+  <!-- ============================================================ -->
+  <!--  DASHBOARD SHELL APPLICATION                                 -->
+  <!-- ============================================================ -->
+  <div id="app" class="hidden">
+    <!-- Sidebar -->
+    <aside id="sidebar">
+      <!-- Sidebar Header -->
+      <div class="p-6 border-b border-slate-800 flex items-center gap-3">
+        <div class="w-9 h-9 rounded-xl bg-gradient-to-tr from-emerald-500 to-emerald-400 text-slate-950 flex items-center justify-center font-black text-lg shadow-md shadow-emerald-500/20">
+          <i class="fa-solid fa-bolt"></i>
+        </div>
+        <span class="brand-title text-xl font-bold tracking-tight text-white">ELECTYRO</span>
+      </div>
+
+      <!-- User Info Badge -->
+      <div class="p-4 mx-3 my-3 rounded-2xl bg-slate-900/80 border border-slate-800 flex items-center gap-3">
+        <div class="relative">
+          <div id="sidebar-avatar" class="w-10 h-10 rounded-xl bg-emerald-500/20 text-emerald-400 font-bold flex items-center justify-center border border-emerald-500/30 text-sm">
+            RS
+          </div>
+          <span class="pulse-dot absolute -top-0.5 -right-0.5 border-2 border-slate-950"></span>
+        </div>
+        <div class="min-w-0 flex-1">
+          <div id="sidebar-name" class="text-xs font-bold text-white truncate">Rahul Sharma</div>
+          <div id="sidebar-role" class="text-[10px] text-emerald-400 font-medium">Consumer</div>
+        </div>
+      </div>
+
+      <!-- Navigation Links -->
+      <nav id="nav-list" class="flex-1 space-y-1 overflow-y-auto py-2">
+        <!-- Rendered dynamically -->
+      </nav>
+
+      <!-- Sidebar Footer / Logout -->
+      <div class="p-4 border-t border-slate-800">
+        <button onclick="handleLogout()" class="btn-secondary w-full btn-sm justify-start text-slate-400 hover:text-rose-400 hover:border-rose-500/30">
+          <i class="fa-solid fa-right-from-bracket"></i> Sign Out
+        </button>
+      </div>
+    </aside>
+
+    <!-- Main Content Area -->
+    <div id="main-area">
+      <!-- Topbar -->
+      <header id="topbar">
+        <div class="flex items-center gap-4">
+          <button onclick="toggleSidebar()" class="w-9 h-9 rounded-xl bg-slate-900 border border-slate-800 flex items-center justify-center text-slate-300 hover:text-white transition">
+            <i class="fa-solid fa-bars-staggered text-sm"></i>
+          </button>
+          <h2 id="page-title" class="font-display font-bold text-xl text-white">Overview</h2>
+        </div>
+
+        <div class="flex items-center gap-4">
+          <span id="topbar-role-badge" class="badge badge-green text-xs tracking-wider">CONSUMER</span>
+          <button onclick="toast('No new system alerts','info')" class="w-9 h-9 rounded-xl bg-slate-900 border border-slate-800 flex items-center justify-center text-slate-300 hover:text-white relative transition">
+            <i class="fa-solid fa-bell text-xs"></i>
+            <span class="w-2 h-2 rounded-full bg-emerald-400 absolute top-2 right-2"></span>
+          </button>
+        </div>
+      </header>
+
+      <!-- Dynamic Page Renderer -->
+      <main id="page-content">
+        <!-- Content injected dynamically by js/app.js -->
+      </main>
+    </div>
+  </div>
+
+  <!-- ============================================================ -->
+  <!--  MODALS                                                      -->
+  <!-- ============================================================ -->
+  
+  <!-- LOGIN & SIGN IN MODAL -->
+  <div id="login-modal" class="modal-overlay">
+    <div class="modal-box">
+      <div class="flex items-center justify-between mb-4">
+        <div class="flex items-center gap-2.5">
+          <div class="w-8 h-8 rounded-lg bg-emerald-500/20 text-emerald-400 flex items-center justify-center font-bold">
+            <i class="fa-solid fa-bolt text-sm"></i>
+          </div>
+          <span class="brand-title text-lg font-bold text-white">Sign In to ELECTYRO</span>
+        </div>
+        <button onclick="hideLogin()" class="text-slate-400 hover:text-white">
+          <i class="fa-solid fa-xmark text-lg"></i>
+        </button>
+      </div>
+
+      <p class="text-xs text-slate-400 mb-5">Select a 1-click test user role or enter credentials below:</p>
+
+      <!-- 1-Click Role Switcher Pills -->
+      <div class="grid grid-cols-3 gap-2 mb-5">
+        <button onclick="quickSelectRole('user')" class="p-2.5 rounded-xl border border-slate-800 bg-slate-900 hover:border-emerald-500/50 text-left transition group">
+          <div class="text-[11px] font-bold text-white group-hover:text-emerald-400">Rahul Sharma</div>
+          <div class="text-[9px] text-emerald-400 font-semibold">Consumer</div>
+        </button>
+        <button onclick="quickSelectRole('staff')" class="p-2.5 rounded-xl border border-slate-800 bg-slate-900 hover:border-cyan-500/50 text-left transition group">
+          <div class="text-[11px] font-bold text-white group-hover:text-cyan-400">Staff Member</div>
+          <div class="text-[9px] text-cyan-400 font-semibold">Utility Staff</div>
+        </button>
+        <button onclick="quickSelectRole('admin')" class="p-2.5 rounded-xl border border-slate-800 bg-slate-900 hover:border-amber-500/50 text-left transition group">
+          <div class="text-[11px] font-bold text-white group-hover:text-amber-400">Admin User</div>
+          <div class="text-[9px] text-amber-400 font-semibold">Administrator</div>
+        </button>
+      </div>
+
+      <div class="space-y-3.5 mb-6">
+        <div>
+          <label class="text-xs font-semibold text-slate-400 mb-1.5 block">Email Address</label>
+          <input id="login-email" type="email" class="input-field" value="user@electyro.com" placeholder="email@electyro.com">
+        </div>
+        <div>
+          <label class="text-xs font-semibold text-slate-400 mb-1.5 block">Password</label>
+          <div class="relative">
+            <input id="login-pass" type="password" class="input-field pr-10" value="user123" placeholder="••••••••">
+            <button onclick="togglePasswordVisibility()" class="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 hover:text-white p-1">
+              <i id="login-pass-icon" class="fa-solid fa-eye text-xs"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div class="space-y-2.5">
+        <button onclick="handleLogin()" class="btn-primary w-full py-3 font-semibold">
+          Sign In to Portal <i class="fa-solid fa-arrow-right text-xs ml-1"></i>
+        </button>
+        <button onclick="hideLogin()" class="btn-secondary w-full py-2.5 text-xs text-slate-400">
+          Cancel
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- INVOICE PAYMENT MODAL -->
+  <div id="pay-modal" class="modal-overlay">
+    <div class="modal-box max-w-md" id="pay-modal-content">
+      <!-- Injected dynamically by openPayModal() -->
+    </div>
+  </div>
+
+  <!-- ADD APPLIANCE MODAL -->
+  <div id="appliance-modal" class="modal-overlay">
+    <div class="modal-box">
+      <div class="flex items-center justify-between mb-4">
+        <h3 class="font-display font-bold text-lg text-white">Add Appliance to Inventory</h3>
+        <button onclick="document.getElementById('appliance-modal').classList.remove('show')" class="text-slate-400 hover:text-white">
+          <i class="fa-solid fa-xmark text-lg"></i>
+        </button>
+      </div>
+
+      <div class="space-y-4 mb-6">
+        <div>
+          <label class="text-xs font-semibold text-slate-400 mb-1.5 block">Appliance Name</label>
+          <input id="new-app-name" class="input-field" placeholder="e.g. Inverter AC 1.5 Ton">
+        </div>
+        <div>
+          <label class="text-xs font-semibold text-slate-400 mb-1.5 block">Power Consumption (Watts)</label>
+          <input id="new-app-watt" type="number" class="input-field" placeholder="e.g. 1500">
+          <div class="flex gap-2 mt-2">
+            <button type="button" onclick="document.getElementById('new-app-watt').value=1500" class="text-[10px] px-2 py-1 rounded bg-slate-800 text-slate-300">AC (1500W)</button>
+            <button type="button" onclick="document.getElementById('new-app-watt').value=200" class="text-[10px] px-2 py-1 rounded bg-slate-800 text-slate-300">Fridge (200W)</button>
+            <button type="button" onclick="document.getElementById('new-app-watt').value=60" class="text-[10px] px-2 py-1 rounded bg-slate-800 text-slate-300">LED (60W)</button>
+            <button type="button" onclick="document.getElementById('new-app-watt').value=1200" class="text-[10px] px-2 py-1 rounded bg-slate-800 text-slate-300">Washer (1200W)</button>
+          </div>
+        </div>
+        <div>
+          <label class="text-xs font-semibold text-slate-400 mb-1.5 block">Category</label>
+          <select id="new-app-cat" class="input-field text-white bg-slate-900">
+            <option value="cooling">Cooling</option>
+            <option value="heating">Heating</option>
+            <option value="lighting">Lighting</option>
+            <option value="kitchen">Kitchen</option>
+            <option value="entertainment">Entertainment</option>
+            <option value="laundry">Laundry</option>
+            <option value="other">Other</option>
+          </select>
+        </div>
+      </div>
+
+      <button onclick="addAppliance()" class="btn-primary w-full py-3">
+        Add Appliance
+      </button>
+    </div>
+  </div>
+
+  <!-- JavaScript Modules -->
+  <script src="/js/db.js"></script>
+  <script src="/js/charts.js"></script>
+  <script src="/js/app.js"></script>
+</body>
+</html>

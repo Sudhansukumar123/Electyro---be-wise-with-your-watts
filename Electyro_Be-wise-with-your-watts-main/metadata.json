@@ -1,0 +1,8 @@
+{
+  "name": "Electyro",
+  "description": "Smart energy tracking and monitoring application with real-time appliance usage metrics and bill simulation.",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}

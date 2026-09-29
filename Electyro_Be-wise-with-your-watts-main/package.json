@@ -1,0 +1,21 @@
+{
+  "name": "electyro",
+  "version": "1.0.0",
+  "description": "ELECTYRO — Be Wise With Your Watts",
+  "main": "server.js",
+  "type": "module",
+  "scripts": {
+    "dev": "node server.js",
+    "build": "echo 'No compilation build step required'",
+    "start": "node server.js",
+    "lint": "echo 'No lint required'"
+  },
+  "dependencies": {
+    "@google/genai": "^2.10.0",
+    "express": "^4.19.2",
+    "three": "^0.185.1"
+  },
+  "devDependencies": {
+    "@types/three": "^0.185.1"
+  }
+}
